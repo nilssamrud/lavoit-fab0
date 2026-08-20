@@ -1,0 +1,1351 @@
+{
+ "generated": "2026-08-19",
+ "source": "plan.py, line_model.py, flow.py",
+ "building": {
+  "length": 72.0,
+  "width": 36.0,
+  "colPitch": 6.0,
+  "baySplit": 18.0,
+  "eaves": 10.0,
+  "ridge": 11.5,
+  "aisleN": 19.7,
+  "aisleS": 16.3,
+  "footprint_m2": 2592,
+  "solventRoom": [
+   39.1,
+   21.2,
+   44.9,
+   35.6
+  ],
+  "solventRoomH": 3.4,
+  "solventDoor": [
+   41.2,
+   42.6
+  ],
+  "softRoom": [
+   26.1,
+   21.2,
+   36.5,
+   35.6
+  ],
+  "softRoomH": 3.0,
+  "softDoor": [
+   30.9,
+   31.9
+  ],
+  "container": [
+   6.058,
+   2.438,
+   2.591
+  ],
+  "dock": {
+   "lane": [
+    -19.5,
+    2.5,
+    -0.5,
+    18.5
+   ],
+   "floor": -1.2,
+   "yard": -0.38,
+   "trucks": [
+    7.0,
+    14.4
+   ]
+  },
+  "eastYard": [
+   72.0,
+   -2.0,
+   92.0,
+   38.0
+  ]
+ },
+ "zones": {
+  "W": {
+   "colour": "#d3cfc4",
+   "label": "W  Warehouse and goods in",
+   "name": "Warehouse and goods in"
+  },
+  "A": {
+   "colour": "#c9b79a",
+   "label": "A  Plate line \u2014 metal, noisy",
+   "name": "Plate line"
+  },
+  "B": {
+   "colour": "#9dbcb5",
+   "label": "B  Soft goods \u2014 clean, partitioned",
+   "name": "Soft goods"
+  },
+  "C": {
+   "colour": "#c2a15c",
+   "label": "C  Parts cleaning \u2014 IPA, ATEX",
+   "name": "Parts cleaning"
+  },
+  "D": {
+   "colour": "#b87333",
+   "label": "D  Stack build",
+   "name": "Stack build"
+  },
+  "E": {
+   "colour": "#b0655c",
+   "label": "E  Hot test \u2014 outdoor pad",
+   "name": "Hot test, outdoors"
+  },
+  "F": {
+   "colour": "#9fb0c4",
+   "label": "F  Subassembly \u2014 off-line prefab",
+   "name": "Subassembly"
+  },
+  "G": {
+   "colour": "#c7b57e",
+   "label": "G  Container assembly",
+   "name": "Container assembly"
+  }
+ },
+ "rooms": [
+  {
+   "zone": "W",
+   "box": [
+    1.0,
+    0.6,
+    18.0,
+    14.4
+   ],
+   "label": "Warehouse and goods in"
+  },
+  {
+   "zone": "W",
+   "box": [
+    1.0,
+    14.8,
+    9.5,
+    35.4
+   ],
+   "label": ""
+  },
+  {
+   "zone": "B",
+   "box": [
+    26.1,
+    21.2,
+    36.5,
+    35.6
+   ],
+   "label": "Soft goods"
+  },
+  {
+   "zone": "C",
+   "box": [
+    39.1,
+    21.2,
+    44.9,
+    35.6
+   ],
+   "label": "Solvent room"
+  }
+ ],
+ "areas": [
+  {
+   "zone": "W",
+   "code": "",
+   "label": "Goods in",
+   "sub": "unload \u00b7 inspect \u00b7 book in",
+   "phase": 1,
+   "box": [
+    1.0,
+    0.6,
+    4.8,
+    35.4
+   ],
+   "h": 4.0,
+   "kind": "store",
+   "outdoor": false
+  },
+  {
+   "zone": "W",
+   "code": "",
+   "label": "Warehouse \u2014 bulk racking",
+   "sub": "BoP, frames, tanks, coil",
+   "phase": 1,
+   "box": [
+    5.4,
+    0.6,
+    18.0,
+    14.4
+   ],
+   "h": 4.0,
+   "kind": "store",
+   "outdoor": false
+  },
+  {
+   "zone": "W",
+   "code": "",
+   "label": "Light goods",
+   "sub": "diaphragm, foam, cord",
+   "phase": 1,
+   "box": [
+    5.4,
+    21.4,
+    9.5,
+    35.4
+   ],
+   "h": 4.0,
+   "kind": "store",
+   "outdoor": false
+  },
+  {
+   "zone": "A",
+   "code": "A1",
+   "label": "Blank",
+   "sub": "buy blanks first",
+   "phase": 1,
+   "box": [
+    10.1,
+    21.4,
+    14.3,
+    35.6
+   ],
+   "h": 2.0,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "A",
+   "code": "A2",
+   "label": "Form + trim press",
+   "sub": "315 t \u00b7 compound die",
+   "phase": 1,
+   "box": [
+    14.9,
+    21.4,
+    25.5,
+    35.6
+   ],
+   "h": 4.2,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "B",
+   "code": "B1",
+   "label": "Gasket cell",
+   "sub": "cord, cut, vulcanise",
+   "phase": 1,
+   "box": [
+    26.5,
+    21.6,
+    30.9,
+    35.4
+   ],
+   "h": 2.1,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "B",
+   "code": "B2",
+   "label": "Membrane cut",
+   "sub": "controlled",
+   "phase": 1,
+   "box": [
+    31.9,
+    28.8,
+    36.3,
+    35.4
+   ],
+   "h": 1.9,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "B",
+   "code": "B3",
+   "label": "Foam cut",
+   "sub": "clicker",
+   "phase": 1,
+   "box": [
+    31.9,
+    21.6,
+    36.3,
+    28.2
+   ],
+   "h": 1.7,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "A",
+   "code": "",
+   "label": "Plate magazine",
+   "sub": "WIP buffer",
+   "phase": 1,
+   "box": [
+    37.1,
+    21.4,
+    38.5,
+    35.6
+   ],
+   "h": 4.0,
+   "kind": "store",
+   "outdoor": false
+  },
+  {
+   "zone": "C",
+   "code": "C1",
+   "label": "Parts cleaning",
+   "sub": "IPA then distilled water",
+   "phase": 1,
+   "box": [
+    39.5,
+    21.6,
+    44.3,
+    35.4
+   ],
+   "h": 2.4,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "C",
+   "code": "",
+   "label": "WIP magazine",
+   "sub": "clean parts",
+   "phase": 1,
+   "box": [
+    45.5,
+    21.4,
+    46.9,
+    35.6
+   ],
+   "h": 4.0,
+   "kind": "store",
+   "outdoor": false
+  },
+  {
+   "zone": "D",
+   "code": "D1",
+   "label": "Lay-up cell 1",
+   "sub": "6-axis + vacuum array",
+   "phase": 1,
+   "box": [
+    47.3,
+    23.2,
+    59.0,
+    35.6
+   ],
+   "h": 2.6,
+   "kind": "fenced",
+   "outdoor": false
+  },
+  {
+   "zone": "D",
+   "code": "D1b",
+   "label": "Lay-up cell 2",
+   "sub": "both are built at 1 GW",
+   "phase": 1,
+   "box": [
+    59.6,
+    23.2,
+    71.0,
+    35.6
+   ],
+   "h": 2.6,
+   "kind": "fenced",
+   "outdoor": false
+  },
+  {
+   "zone": "D",
+   "code": "D3",
+   "label": "Close, compress, torque, test",
+   "sub": "press bed is the build fixture",
+   "phase": 1,
+   "box": [
+    50.4,
+    18.3,
+    71.0,
+    22.6
+   ],
+   "h": 3.4,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "F",
+   "code": "F2",
+   "label": "Wall panel prefab",
+   "sub": "panels dressed off-line",
+   "phase": 1,
+   "box": [
+    18.6,
+    0.6,
+    25.2,
+    14.4
+   ],
+   "h": 2.8,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "F",
+   "code": "F1",
+   "label": "Piping spool prefab",
+   "sub": "socket fusion + press fittings",
+   "phase": 1,
+   "box": [
+    25.8,
+    0.6,
+    29.8,
+    14.4
+   ],
+   "h": 1.4,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "F",
+   "code": "F3",
+   "label": "Sub-skid build and test",
+   "sub": "stack rack \u00b7 process \u00b7 electrical",
+   "phase": 1,
+   "box": [
+    31.0,
+    0.6,
+    37.8,
+    14.4
+   ],
+   "h": 1.6,
+   "kind": "machine",
+   "outdoor": false
+  },
+  {
+   "zone": "G",
+   "code": "",
+   "label": "BoP kitting",
+   "sub": "kit trolleys, line-side",
+   "phase": 1,
+   "box": [
+    48.4,
+    0.6,
+    54.4,
+    11.0
+   ],
+   "h": 4.0,
+   "kind": "store",
+   "outdoor": false
+  },
+  {
+   "zone": "G",
+   "code": "G1",
+   "label": "Container bay",
+   "sub": "open frame under crane",
+   "phase": 1,
+   "box": [
+    55.0,
+    0.6,
+    71.0,
+    13.7
+   ],
+   "h": 2.9,
+   "kind": "container",
+   "outdoor": false
+  },
+  {
+   "zone": "E",
+   "code": "G6",
+   "label": "Hot test pad",
+   "sub": "3 h at 5 MW \u00b7 water + power",
+   "phase": 1,
+   "box": [
+    75.5,
+    3.4,
+    86.5,
+    10.8
+   ],
+   "h": 0.15,
+   "kind": "pad",
+   "outdoor": true
+  }
+ ],
+ "steps": [
+  {
+   "n": 1,
+   "code": "A1",
+   "zone": "A",
+   "zoneName": "Plate line",
+   "band": "Component manufacture",
+   "name": "Blank",
+   "modelName": "Blank / decoil",
+   "headline": "buy cut blanks until volume justifies a decoiler",
+   "sub": "buy blanks first",
+   "box": [
+    10.1,
+    21.4,
+    14.3,
+    35.6
+   ],
+   "h": 2.0,
+   "footprint_m2": 59.6,
+   "per": "plate",
+   "cycle_s": 8.0,
+   "basis": "est",
+   "capex_eur": 45000,
+   "area_m2": 60,
+   "operators": 0.25,
+   "stage": 1,
+   "note": "Buy pre-cut blanks at first; the decoiler is a volume upgrade.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.161,
+    "util": 0.1608
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.129,
+    "util": 0.1287
+   },
+   "from": [],
+   "to": [
+    "A2"
+   ],
+   "carries": {
+    "A2": ""
+   },
+   "boughtIn": [
+    "Ni / NPS strip"
+   ]
+  },
+  {
+   "n": 2,
+   "code": "A2",
+   "zone": "A",
+   "zoneName": "Plate line",
+   "band": "Component manufacture",
+   "name": "Form + trim",
+   "modelName": "Form + trim press",
+   "headline": "form, blank and pierce in one stroke \u2014 no laser",
+   "sub": "315 t \u00b7 compound die",
+   "box": [
+    14.9,
+    21.4,
+    25.5,
+    35.6
+   ],
+   "h": 4.2,
+   "footprint_m2": 150.5,
+   "per": "plate",
+   "cycle_s": 24.0,
+   "basis": "der",
+   "capex_eur": 110000,
+   "area_m2": 150,
+   "operators": 0.5,
+   "stage": 1,
+   "note": "[F] 315 t Nanjing Asia at $18k + install, plus a compound form-and-trim die. Forms the corrugation, blanks the outline and pierces the ports in one stroke: ~120 t forming + ~38 t blanking = ~158 t, inside a 315 t press. The die is the datum, so the outline is registered to the corrugation by tool geometry rather than by fixturing. No laser. This is only available on a frozen design -- every revision is a new die at 12-20 weeks. Priced to BEND 0.30 mm nickel; if the plate needs COINING the force is five figures of tonnes and this line does not exist. Gauge folded into the unload, so there is no inspect station.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.483,
+    "util": 0.4825
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.386,
+    "util": 0.386
+   },
+   "from": [
+    "A1"
+   ],
+   "to": [
+    "C1"
+   ],
+   "carries": {
+    "C1": "formed and trimmed plates"
+   },
+   "boughtIn": []
+  },
+  {
+   "n": 3,
+   "code": "B1",
+   "zone": "B",
+   "zoneName": "Soft goods",
+   "band": "Soft goods, then cleaning",
+   "name": "Gasket cell",
+   "modelName": "Gasket production",
+   "headline": "two per cell, cord cut and hot-vulcanised",
+   "sub": "cord, cut, vulcanise",
+   "box": [
+    26.5,
+    21.6,
+    30.9,
+    35.4
+   ],
+   "h": 2.1,
+   "footprint_m2": 60.7,
+   "per": "gasket",
+   "cycle_s": 12.0,
+   "basis": "est",
+   "capex_eur": 95000,
+   "area_m2": 60,
+   "operators": 0.5,
+   "stage": 1,
+   "note": "Extruded cord, cut to length, hot-vulcanised into closed loops, plus a waterjet for what is not a loop. Any sheet-based route throws away ~90% of the rubber.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.483,
+    "util": 0.4825
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.386,
+    "util": 0.386
+   },
+   "from": [],
+   "to": [
+    "C1"
+   ],
+   "carries": {
+    "C1": "spliced gasket loops"
+   },
+   "boughtIn": [
+    "EPDM"
+   ]
+  },
+  {
+   "n": 4,
+   "code": "B2",
+   "zone": "B",
+   "zoneName": "Soft goods",
+   "band": "Soft goods, then cleaning",
+   "name": "Membrane cut",
+   "modelName": "Membrane cut",
+   "headline": "die cut, controlled area \u2014 skips the bath",
+   "sub": "controlled",
+   "box": [
+    31.9,
+    28.8,
+    36.3,
+    35.4
+   ],
+   "h": 1.9,
+   "footprint_m2": 29.0,
+   "per": "membrane",
+   "cycle_s": 20.0,
+   "basis": "est",
+   "capex_eur": 45000,
+   "area_m2": 30,
+   "operators": 0.5,
+   "stage": 1,
+   "note": "Die cut, not laser. NREL prices a die-cut station at $110k and 30 m2 for 7,000 parts/h.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.402,
+    "util": 0.4021
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.322,
+    "util": 0.3217
+   },
+   "from": [],
+   "to": [
+    "D1"
+   ],
+   "carries": {
+    "D1": "cut diaphragms, never cleaned"
+   },
+   "boughtIn": [
+    "Zirfon-type diaphragm"
+   ]
+  },
+  {
+   "n": 5,
+   "code": "B3",
+   "zone": "B",
+   "zoneName": "Soft goods",
+   "band": "Soft goods, then cleaning",
+   "name": "Foam cut",
+   "modelName": "Foam cut",
+   "headline": "clicker press, 2 per cell",
+   "sub": "clicker",
+   "box": [
+    31.9,
+    21.6,
+    36.3,
+    28.2
+   ],
+   "h": 1.7,
+   "footprint_m2": 29.0,
+   "per": "foam",
+   "cycle_s": 12.0,
+   "basis": "est",
+   "capex_eur": 35000,
+   "area_m2": 30,
+   "operators": 0.25,
+   "stage": 1,
+   "note": "Same clicker-press family. Could share one press with the membrane on a tool change; kept separate for now.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.483,
+    "util": 0.4825
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.386,
+    "util": 0.386
+   },
+   "from": [],
+   "to": [
+    "C1"
+   ],
+   "carries": {
+    "C1": "cut foam"
+   },
+   "boughtIn": [
+    "Ni foam"
+   ]
+  },
+  {
+   "n": 6,
+   "code": "C1",
+   "zone": "C",
+   "zoneName": "Parts cleaning",
+   "band": "Soft goods, then cleaning",
+   "name": "Parts cleaning",
+   "modelName": "Parts cleaning",
+   "headline": "IPA then distilled water \u2014 plates, foam and gaskets",
+   "sub": "IPA then distilled water",
+   "box": [
+    39.5,
+    21.6,
+    44.3,
+    35.4
+   ],
+   "h": 2.4,
+   "footprint_m2": 66.2,
+   "per": "cell",
+   "cycle_s": 28.0,
+   "basis": "est",
+   "capex_eur": 65000,
+   "area_m2": 70,
+   "operators": 0.5,
+   "stage": 1,
+   "note": "Two baths: isopropanol to lift forming lubricant, mould release and handling oils, then distilled water to rinse the IPA off. Serves plates, nickel foam and gaskets from one station -- the diaphragm is not cleaned, it comes clean and stays interleaved. Cycle is a basket of ~50 plates or ~300 foam or ~500 gaskets through a ~15 min bath sequence, divided down to a per-cell figure. IPA has a 12 C flash point, so this is an ATEX area with LEV, bunding and a solvent store. It is the only hazardous room inside the building; the other one is the hot test pad, outdoors.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.563,
+    "util": 0.563
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.45,
+    "util": 0.4504
+   },
+   "from": [
+    "A2",
+    "B1",
+    "B3"
+   ],
+   "to": [
+    "D1"
+   ],
+   "carries": {
+    "D1": "clean plates, foam and gaskets"
+   },
+   "boughtIn": []
+  },
+  {
+   "n": 7,
+   "code": "D1",
+   "zone": "D",
+   "zoneName": "Stack build",
+   "band": "Stack build",
+   "name": "Lay-up cell",
+   "modelName": "Lay-up cell",
+   "headline": "190 cells, 4 picks each, rods as datum",
+   "sub": "6-axis + vacuum array",
+   "box": [
+    47.3,
+    23.2,
+    59.0,
+    35.6
+   ],
+   "h": 2.6,
+   "footprint_m2": 145.1,
+   "per": "cell",
+   "cycle_s": 60.0,
+   "basis": "est",
+   "capex_eur": 150000,
+   "area_m2": 150,
+   "operators": 0.5,
+   "stage": 1,
+   "note": "[F] used ABB IRB 6640 at $9.5k, vacuum array, integration at 3x hardware. NREL prices a turnkey auto station at $1-2m; the gap is in-house integration and is a real risk.",
+   "phase1": {
+    "buy": 2,
+    "need": 1.206,
+    "util": 0.6032
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.965,
+    "util": 0.9651
+   },
+   "from": [
+    "B2",
+    "C1"
+   ],
+   "to": [
+    "D3"
+   ],
+   "carries": {
+    "D3": "190-cell lay-up on its rods"
+   },
+   "boughtIn": []
+  },
+  {
+   "n": 8,
+   "code": "D3",
+   "zone": "D",
+   "zoneName": "Stack build",
+   "band": "Stack build",
+   "name": "Close, compress, test",
+   "modelName": "Close, compress, torque, test",
+   "headline": "press bed is the build fixture",
+   "sub": "press bed is the build fixture",
+   "box": [
+    50.4,
+    18.3,
+    71.0,
+    22.6
+   ],
+   "h": 3.4,
+   "footprint_m2": 88.6,
+   "per": "stack",
+   "cycle_s": 3600.0,
+   "basis": "est",
+   "capex_eur": 90000,
+   "area_m2": 90,
+   "operators": 1.5,
+   "stage": 1,
+   "note": "Press bed is the build fixture. End plates on, rods torqued in a star pattern with angle logged, leak tested clamped in situ. Saves two lifts of a 1,200 kg stack and the realignment after each.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.381,
+    "util": 0.381
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.305,
+    "util": 0.3048
+   },
+   "from": [
+    "D1"
+   ],
+   "to": [
+    "G1"
+   ],
+   "carries": {
+    "G1": "compressed, torqued, leak-tested stack"
+   },
+   "boughtIn": []
+  },
+  {
+   "n": 9,
+   "code": "F1",
+   "zone": "F",
+   "zoneName": "Subassembly",
+   "band": "System build",
+   "name": "Piping prefab",
+   "modelName": "Piping spool prefab",
+   "headline": "PP socket fusion + 316L press fittings",
+   "sub": "socket fusion + press fittings",
+   "box": [
+    25.8,
+    0.6,
+    29.8,
+    14.4
+   ],
+   "h": 1.4,
+   "footprint_m2": 55.2,
+   "per": "container",
+   "cycle_s": 18000.0,
+   "basis": "est",
+   "capex_eur": 30000,
+   "area_m2": 55,
+   "operators": 1.5,
+   "stage": 1,
+   "note": "Two interchangeable 6 m sub-modules on one short jig. Electrolyte side is PP socket-fused; gas side is 316L press-fitted. Neither is a welded fabrication, so there is no orbital TIG, no argon purge and O2 analyser, no pickle and passivate bath, and no coded welder to EN ISO 9606-1. A bench assembly by a trained operator instead of a weld shop, at roughly half the hours.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.381,
+    "util": 0.381
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.305,
+    "util": 0.3048
+   },
+   "from": [],
+   "to": [
+    "G1"
+   ],
+   "carries": {
+    "G1": "pipe module, hydrotested"
+   },
+   "boughtIn": [
+    "Rectifier, tanks, pumps, valves"
+   ]
+  },
+  {
+   "n": 10,
+   "code": "F2",
+   "zone": "F",
+   "zoneName": "Subassembly",
+   "band": "System build",
+   "name": "Wall panels",
+   "modelName": "Wall panel prefab",
+   "headline": "dressed off-line, bolted on last",
+   "sub": "panels dressed off-line",
+   "box": [
+    18.6,
+    0.6,
+    25.2,
+    14.4
+   ],
+   "h": 2.8,
+   "footprint_m2": 91.1,
+   "per": "container",
+   "cycle_s": 21600.0,
+   "basis": "est",
+   "capex_eur": 35000,
+   "area_m2": 90,
+   "operators": 2.0,
+   "stage": 1,
+   "note": "Panels dressed with their equipment before they meet the frame.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.457,
+    "util": 0.4571
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.366,
+    "util": 0.3657
+   },
+   "from": [],
+   "to": [
+    "G1"
+   ],
+   "carries": {
+    "G1": "dressed wall panels"
+   },
+   "boughtIn": []
+  },
+  {
+   "n": 11,
+   "code": "F3",
+   "zone": "F",
+   "zoneName": "Subassembly",
+   "band": "System build",
+   "name": "Sub-skids",
+   "modelName": "Sub-skid build and test",
+   "headline": "stack rack, process, electrical \u2014 in parallel",
+   "sub": "stack rack \u00b7 process \u00b7 electrical",
+   "box": [
+    31.0,
+    0.6,
+    37.8,
+    14.4
+   ],
+   "h": 1.6,
+   "footprint_m2": 93.8,
+   "per": "container",
+   "cycle_s": 28800.0,
+   "basis": "est",
+   "capex_eur": 55000,
+   "area_m2": 95,
+   "operators": 2.0,
+   "stage": 1,
+   "note": "Stack rack and electrical skid built on open benches at working height and pre-tested. A 5 MW package in a 20 ft envelope has room for one person, so the work has to leave the box.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.61,
+    "util": 0.6095
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.488,
+    "util": 0.4876
+   },
+   "from": [],
+   "to": [
+    "G1"
+   ],
+   "carries": {
+    "G1": "three pre-tested sub-skids"
+   },
+   "boughtIn": []
+  },
+  {
+   "n": 12,
+   "code": "G1",
+   "zone": "G",
+   "zoneName": "Container assembly",
+   "band": "System build",
+   "name": "Container assembly",
+   "modelName": "Container assembly bay",
+   "headline": "three crane lifts, 8 h of bay time",
+   "sub": "open frame under crane",
+   "box": [
+    55.0,
+    0.6,
+    71.0,
+    13.7
+   ],
+   "h": 2.9,
+   "footprint_m2": 209.6,
+   "per": "container",
+   "cycle_s": 28800.0,
+   "basis": "est",
+   "capex_eur": 75000,
+   "area_m2": 210,
+   "operators": 3.0,
+   "stage": 1,
+   "note": "Three crane lifts and a connection list. 8 h of bay time, not 24, because the work moved to the benches.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.61,
+    "util": 0.6095
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.488,
+    "util": 0.4876
+   },
+   "from": [
+    "D3",
+    "F1",
+    "F2",
+    "F3"
+   ],
+   "to": [
+    "G6"
+   ],
+   "carries": {
+    "G6": "container, cold, out the east shutter"
+   },
+   "boughtIn": []
+  },
+  {
+   "n": 13,
+   "code": "G6",
+   "zone": "G",
+   "zoneName": "Container assembly",
+   "band": "System build",
+   "name": "Hot test / FAT",
+   "modelName": "Hot test / FAT",
+   "headline": "rolls out the east shutter onto the pad",
+   "sub": "",
+   "box": [
+    75.5,
+    3.4,
+    86.5,
+    10.8
+   ],
+   "h": 2.9,
+   "footprint_m2": 81.4,
+   "per": "container",
+   "cycle_s": 21600.0,
+   "basis": "est",
+   "capex_eur": 110000,
+   "area_m2": 0,
+   "operators": 1.0,
+   "stage": 1,
+   "note": "The only performance test in the plant. The finished container is craned to an outdoor pad, connected to water and power, cold checked, then run hot for three hours on its own rectifier. Six hours of pad occupancy including the moves and the connections. No standalone stack wet test: a bare stack needs a 1 MW rectifier of its own and a container brings one.",
+   "phase1": {
+    "buy": 1,
+    "need": 0.457,
+    "util": 0.4571
+   },
+   "nameplate": {
+    "buy": 1,
+    "need": 0.366,
+    "util": 0.3657
+   },
+   "from": [
+    "G1"
+   ],
+   "to": [],
+   "carries": {},
+   "boughtIn": []
+  }
+ ],
+ "cranes": [
+  {
+   "name": "Crane 1",
+   "x": [
+    19.0,
+    71.0
+   ],
+   "y": [
+    0.6,
+    17.4
+   ],
+   "spec": "12.5 t  \u00b7  16.8 m span  \u00b7  8.0 m under hook",
+   "hook": 8.0
+  },
+  {
+   "name": "Crane 2",
+   "x": [
+    39.0,
+    71.0
+   ],
+   "y": [
+    18.6,
+    35.6
+   ],
+   "spec": "3.2 t  \u00b7  17.0 m span  \u00b7  6.5 m under hook",
+   "hook": 6.5
+  }
+ ],
+ "doors": [
+  {
+   "wall": "W",
+   "a": 4.0,
+   "b": 10.0,
+   "kind": "dock",
+   "note": "materials in",
+   "h": 4.2
+  },
+  {
+   "wall": "W",
+   "a": 11.0,
+   "b": 17.0,
+   "kind": "dock",
+   "note": "BoP in",
+   "h": 4.2
+  },
+  {
+   "wall": "E",
+   "a": 3.6,
+   "b": 10.6,
+   "kind": "roller",
+   "note": "container out",
+   "h": 5.0
+  },
+  {
+   "wall": "S",
+   "a": 40.0,
+   "b": 46.0,
+   "kind": "grade",
+   "note": "tanks, rectifier",
+   "h": 5.0
+  }
+ ],
+ "routes": [
+  {
+   "from": "A2",
+   "to": "C1",
+   "aisle": 19.7,
+   "label": "formed plates",
+   "exitX": null,
+   "entryX": null
+  },
+  {
+   "from": "B1",
+   "to": "C1",
+   "aisle": 19.7,
+   "label": "",
+   "exitX": 31.2,
+   "entryX": null
+  },
+  {
+   "from": "B3",
+   "to": "C1",
+   "aisle": 19.7,
+   "label": "",
+   "exitX": 31.4,
+   "entryX": null
+  },
+  {
+   "from": "B2",
+   "to": "D1",
+   "aisle": 19.7,
+   "label": "diaphragm \u00b7 never cleaned",
+   "exitX": 31.6,
+   "entryX": 48.6
+  },
+  {
+   "from": "C1",
+   "to": "D1",
+   "aisle": 19.7,
+   "label": "clean parts",
+   "exitX": null,
+   "entryX": 48.9
+  },
+  {
+   "from": "D3",
+   "to": "G1",
+   "aisle": 16.3,
+   "label": "stacks",
+   "exitX": null,
+   "entryX": null
+  },
+  {
+   "from": "F1",
+   "to": "G1",
+   "aisle": 16.3,
+   "label": "",
+   "exitX": null,
+   "entryX": null
+  },
+  {
+   "from": "F2",
+   "to": "G1",
+   "aisle": 16.3,
+   "label": "",
+   "exitX": null,
+   "entryX": null
+  },
+  {
+   "from": "F3",
+   "to": "G1",
+   "aisle": 16.3,
+   "label": "",
+   "exitX": null,
+   "entryX": null
+  }
+ ],
+ "chain": [
+  {
+   "from": "A1",
+   "to": "A2"
+  },
+  {
+   "from": "D1",
+   "to": "D3"
+  },
+  {
+   "from": "D1b",
+   "to": "D3"
+  }
+ ],
+ "yard": [
+  {
+   "box": [
+    75.5,
+    3.4,
+    86.5,
+    10.8
+   ],
+   "label": "Hot test pad",
+   "sub": "3 h at 5 MW \u00b7 water + power"
+  }
+ ],
+ "crew": [
+  [
+   12.2,
+   22.4
+  ],
+  [
+   20.0,
+   22.2
+  ],
+  [
+   28.6,
+   22.4
+  ],
+  [
+   34.1,
+   22.4
+  ],
+  [
+   41.9,
+   19.6
+  ],
+  [
+   48.4,
+   20.8
+  ],
+  [
+   53.5,
+   24.2
+  ],
+  [
+   65.5,
+   24.2
+  ],
+  [
+   60.5,
+   20.0
+  ],
+  [
+   22.0,
+   16.2
+  ],
+  [
+   27.8,
+   15.6
+  ],
+  [
+   34.4,
+   15.8
+  ],
+  [
+   51.4,
+   12.4
+  ],
+  [
+   62.0,
+   15.2
+  ],
+  [
+   7.2,
+   16.4
+  ],
+  [
+   2.9,
+   8.4
+  ]
+ ],
+ "summary": {
+  "phase1": {
+   "mw": 1000.0,
+   "shifts": 2.0,
+   "takt_s": 49.7,
+   "stacks": 1000,
+   "cells": 190000,
+   "containers": 200,
+   "capex_eur": 1090000,
+   "station_area_m2": 1240,
+   "building_m2": 2592,
+   "storage_m2": 1140,
+   "spare_m2": 212,
+   "crew": 29.0
+  },
+  "nameplate": {
+   "mw": 1200.0,
+   "shifts": 3.0,
+   "takt_s": 62.2,
+   "stacks": 1200,
+   "cells": 228000,
+   "containers": 240,
+   "capex_eur": 940000,
+   "station_area_m2": 1090,
+   "building_m2": 2592,
+   "storage_m2": 1248,
+   "spare_m2": 254,
+   "crew": 42.0
+  },
+  "commissioning": {
+   "equipment_eur": 1090000,
+   "facility_eur": 503000,
+   "cranes_eur": 140000,
+   "contingency_pct": 0.2,
+   "total_eur": 2079600
+  },
+  "product": {
+   "name": "190-cell / 1 MW, 2 gaskets",
+   "cells_per_stack": 190,
+   "stack_kw": 1000.0,
+   "stacks_per_container": 5,
+   "container_mw": 5.0
+  }
+ }
+}

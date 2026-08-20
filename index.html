@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab 0 · walk the line</title>
+<meta name="description" content="Interactive general arrangement of Lavoit Fab 0: a 3D massing model of the first stack factory, one gigawatt a year on two shifts, walkable station by station.">
+<link rel="preload" href="./vendor/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+</head>
+<body>
+
+<div id="loading"><span>Building Fab 0</span></div>
+
+<header class="bar">
+  <div class="brand">
+    <img src="./vendor/lavoit-engineering.png" alt="Lavoit Engineering">
+    <h1>Fab&nbsp;0</h1>
+  </div>
+  <nav class="views" aria-label="Camera">
+    <button data-view="iso" class="on">Isometric</button>
+    <button data-view="plan">Plan</button>
+    <button data-view="north">North bay</button>
+    <button data-view="south">South bay</button>
+    <button data-view="pads">Test pad</button>
+    <button data-view="dock">Goods in</button>
+  </nav>
+  <div class="layers" aria-label="Layers">
+    <label><input type="checkbox" id="t-roof" checked> Roof</label>
+    <label><input type="checkbox" id="t-crane" checked> Cranes</label>
+    <label><input type="checkbox" id="t-people" checked> Crew</label>
+    <label><input type="checkbox" id="t-nums" checked> Numbers</label>
+  </div>
+</header>
+
+<main>
+  <section class="stage">
+    <canvas id="c"></canvas>
+    <div id="markers" aria-hidden="false"></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <aside class="panel" id="panel">
+    <div id="overview" class="pane"></div>
+    <article id="detail" class="pane" hidden></article>
+  </aside>
+</main>
+
+<footer class="rail">
+  <button id="prev" class="step-btn" title="Previous station (←)">◀</button>
+  <div class="bands" id="bands"></div>
+  <button id="next" class="step-btn" title="Next station (→)">▶</button>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

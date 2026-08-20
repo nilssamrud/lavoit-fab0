@@ -1,0 +1,468 @@
+/* Fab 0 viewer.
+ *
+ * The type and the palette are Lavoit's, set in design/branding/003-typography.md
+ * and shared with svgkit.py, so the viewer, the drawing sheets and the website
+ * read as one document. Two faces: Newsreader for headings, Helvetica Neue for
+ * everything else. One weight. No tracking, no capitalised labels, no third
+ * family -- rank is carried by position, space and colour.
+ *
+ * The one place this deviates from the house rule is size. The house says 16 px
+ * body and nothing else; an instrument panel with sixty numbers on it cannot
+ * hold that and stay on one screen, so the panel runs at 13 px throughout. It is
+ * one size, not a scale, which is the part of the rule that matters.
+ */
+
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./vendor/newsreader-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./vendor/newsreader-400-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+1E00-1E9F, U+2020,
+    U+20A0-20AB, U+20AD-20C0;
+}
+
+:root {
+  --ink: #27241e;
+  --grey: #6f6b62;
+  --faint: #a9a49a;
+  --paper: #f6f6f4;
+  --card: #ffffff;
+  --line: #e0ded6;
+  --copper: #b87333;
+
+  --zone-A: #c9b79a;
+  --zone-B: #9dbcb5;
+  --zone-D: #b87333;
+  --zone-E: #b0655c;
+  --zone-F: #9fb0c4;
+  --zone-G: #c7b57e;
+  --zone-W: #d3cfc4;
+
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "Newsreader", Georgia, serif;
+
+  --r: 5px;
+
+  --bar-h: 60px;
+  --rail-h: 116px;
+  --panel-w: 382px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The browser bolds headings and <strong> on its own, and fakes a bold when no
+   bold cut exists. Both are switched off here rather than left to a reset. */
+h1, h2, h3, h4, b, strong { font-weight: 400; }
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  cursor: pointer;
+  border-radius: var(--r);
+}
+
+/* ------------------------------------------------------------------ header */
+
+.bar {
+  position: relative;
+  z-index: 20;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 18px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.brand img { height: 15px; width: auto; display: block; }
+.brand h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 21px;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+.brand p {
+  margin: 0;
+  color: var(--grey);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.views { display: flex; gap: 4px; margin-left: auto; }
+.views button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--grey);
+  padding: 7px 12px;
+}
+.views button:hover { color: var(--ink); border-color: var(--faint); }
+.views button.on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.layers { display: flex; gap: 14px; }
+.layers label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--grey);
+  cursor: pointer;
+  user-select: none;
+}
+.layers input { accent-color: var(--ink); margin: 0; }
+
+/* -------------------------------------------------------------------- main */
+
+main {
+  position: relative;
+  height: calc(100% - var(--bar-h) - var(--rail-h));
+  display: flex;
+}
+
+.stage { position: relative; flex: 1; min-width: 0; }
+#c { display: block; width: 100%; height: 100%; }
+
+/* The legend floats over a dark concrete floor, so it carries a paper chip
+   behind it rather than relying on ink contrast it does not have. */
+.legend {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(246, 246, 244, 0.86);
+  border-radius: var(--r);
+  padding: 10px 12px;
+  pointer-events: none;
+}
+.legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--grey);
+}
+.legend i {
+  width: 13px;
+  height: 9px;
+  border: 0.5px solid var(--ink);
+  border-radius: 1px;
+  display: block;
+}
+
+/* ----------------------------------------------------------- the numbers */
+
+#markers { position: absolute; inset: 0; pointer-events: none; }
+
+.marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  will-change: transform, left, top;
+}
+.marker b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  box-shadow: 0 2px 7px rgba(39, 36, 30, 0.18);
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s, transform 0.15s, border-color 0.15s;
+}
+.marker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 14px;
+  margin-left: -0.5px;
+  background: var(--ink);
+  opacity: 0.35;
+}
+.marker:hover b { transform: scale(1.16); border-color: var(--copper); }
+.marker.on b {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  transform: scale(1.2);
+}
+.marker.dim b { opacity: 0.42; }
+.marker.dim::after { opacity: 0.14; }
+.marker.hidden { display: none; }
+
+/* ------------------------------------------------------------------- panel */
+
+.panel {
+  width: var(--panel-w);
+  flex: none;
+  border-left: 1px solid var(--line);
+  background: var(--card);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.pane { padding: 22px 24px 38px; }
+
+h2.sec {
+  margin: 34px 0 12px;
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--line);
+}
+h2.sec:first-child { margin-top: 0; }
+
+.kv { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
+.kv dt { color: var(--grey); }
+.kv dd { margin: 0; text-align: right; }
+dl { margin: 0; }
+
+.lede { margin: 0 0 6px; line-height: 1.6; color: var(--ink); }
+.note {
+  margin: 12px 0 0;
+  line-height: 1.6;
+  color: var(--grey);
+  border-left: 1px solid var(--line);
+  padding-left: 12px;
+}
+.note em { color: var(--ink); font-style: italic; }
+
+/* detail head */
+
+.head { display: flex; align-items: flex-start; gap: 14px; }
+.head .num {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.head h3 {
+  margin: 2px 0 4px;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: -0.015em;
+}
+.head .meta { color: var(--grey); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  color: var(--grey);
+  background: var(--paper);
+}
+.chip i { width: 8px; height: 8px; border-radius: 1px; display: block; }
+.chip.act { cursor: pointer; color: var(--ink); }
+.chip.act:hover { border-color: var(--copper); color: var(--copper); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+/* utilisation */
+
+.flowgrp { margin: 14px 0; }
+.flowgrp .lbl { display: block; color: var(--faint); }
+.flowgrp .chips { margin-top: 6px; }
+
+.util { margin: 13px 0 4px; }
+.util .top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  white-space: nowrap;
+  color: var(--grey);
+  margin-bottom: 6px;
+}
+.util .top b { color: var(--ink); }
+.bar-track {
+  height: 7px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.bar-fill { height: 100%; background: var(--copper); }
+.bar-fill.cool { background: var(--faint); }
+
+.warn {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: var(--r);
+  background: #f2ece2;
+  border: 1px solid #e3d9c8;
+  line-height: 1.6;
+  color: #6d5533;
+}
+.warn b { display: block; color: #4a3a22; margin-bottom: 4px; }
+
+.backrow { display: flex; gap: 8px; margin-bottom: 20px; }
+.backrow button {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--grey);
+  padding: 7px 11px;
+}
+.backrow button:hover:not(:disabled) { color: var(--ink); border-color: var(--faint); }
+.backrow button:disabled { opacity: 0.35; cursor: default; }
+
+/* --------------------------------------------------------------- the rail */
+
+.rail {
+  height: var(--rail-h);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  padding: 10px 12px;
+}
+
+.step-btn {
+  flex: none;
+  width: 40px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--grey);
+}
+.step-btn:hover:not(:disabled) { color: var(--ink); border-color: var(--faint); }
+.step-btn:disabled { opacity: 0.3; cursor: default; }
+
+.bands {
+  flex: 1;
+  display: flex;
+  gap: 26px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 2px;
+}
+.bands::-webkit-scrollbar { height: 5px; }
+.bands::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.band { display: flex; flex-direction: column; gap: 7px; flex: none; }
+.band > span {
+  color: var(--grey);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+.band .row { display: flex; align-items: center; gap: 5px; }
+
+.node {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 7px 11px 7px 7px;
+  text-align: left;
+  min-width: 112px;
+}
+.node:hover { border-color: var(--faint); }
+.node .n {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+.node .t { display: flex; flex-direction: column; line-height: 1.35; }
+.node .t b { color: var(--ink); }
+.node .t span { color: var(--faint); font-size: 11px; }
+.node.on { border-color: var(--ink); background: var(--ink); }
+.node.on .n { border-color: var(--paper); color: var(--paper); }
+.node.on .t b { color: var(--paper); }
+.node.on .t span { color: #b3aea3; }
+
+.arrow { color: var(--faint); flex: none; }
+.terminal {
+  align-self: center;
+  color: var(--faint);
+  border: 1px dashed var(--line);
+  padding: 8px 11px;
+  border-radius: var(--r);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ misc */
+
+#loading {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  font-family: var(--display);
+  font-size: 21px;
+  letter-spacing: -0.015em;
+  color: var(--grey);
+  transition: opacity 0.5s;
+}
+/* visibility is delayed to the end of the fade, so the overlay leaves the paint
+   tree instead of sitting over the canvas at zero opacity for ever */
+#loading.gone {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0s 0.5s;
+}
+
+@media (max-width: 1120px) {
+  :root { --panel-w: 320px; }
+  .layers { display: none; }
+}
+
+@media (max-width: 860px) {
+  :root { --rail-h: 104px; }
+  main { flex-direction: column; }
+  .panel { width: 100%; height: 45%; border-left: 0; border-top: 1px solid var(--line); }
+  .stage { height: 55%; }
+  .brand p, .legend { display: none; }
+}
